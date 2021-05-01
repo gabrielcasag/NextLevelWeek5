@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface IFooterProps {
+  isEmpty: boolean;
+}
+
 export const Container = styled.div`
   padding: 3rem 4rem;
   height: 100vh;
@@ -12,13 +16,9 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-
-  footer { 
-    align-self: stretch;
-  }
 `;
 
-export const Main = styled.div`
+export const EmptyPlayer = styled.div`
   width: 100%;
   height: 20rem;
   padding: 4rem;
@@ -32,6 +32,28 @@ export const Main = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const PlayingEpisode = styled.div`
+  text-align: center;
+
+  img {
+    border-radius: 1.5rem;
+  }
+
+  strong {
+    display: block;
+    margin-top: 2rem;
+    font: 600 1.25rem Lexend, sans-serif;
+    line-height: 1.75rem;
+  }
+
+  span {
+    display: block;
+    margin-top: 1rem;
+    opacity: 0.6;
+    line-height: 1.5rem;
+  }
 `;
 
 export const Header = styled.header`   
@@ -56,13 +78,13 @@ export const Progress = styled.div`
     width: 4rem;
     text-align: center;
   }
+`;
 
-  div {
-    width: 100%;
-    height: 4px;
-    background: var(--purple-300);
-    border-radius: 2px;
-  }
+export const EmptySlider = styled.div`
+  width: 100%;
+  height: 4px;
+  background: var(--purple-300);
+  border-radius: 2px;
 `;
 
 export const Buttons = styled.div`
@@ -76,6 +98,16 @@ export const Buttons = styled.div`
     background: transparent;
     border: 0;
     font-size: 0;
+
+    transition: filter 0.2s;
+
+    &:disabled {
+      cursor: default;
+    }
+
+    &:hover:not(:disabled) {
+      filter: brightness(0.8);
+    }
   }
 
   .playButton {
@@ -83,5 +115,15 @@ export const Buttons = styled.div`
     height: 4rem;
     border-radius: 1rem;
     background: var(--purple-400);
+
+    &:hover:not(:disabled) {
+      filter: brightness(1.2);
+    }
   }
+`;
+
+export const Footer = styled.footer<IFooterProps>`
+  align-self: stretch;
+
+  opacity: ${(props) => (props.isEmpty ? 0.5 : 1)};
 `;
