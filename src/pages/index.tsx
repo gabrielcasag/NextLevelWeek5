@@ -1,6 +1,7 @@
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Html, Head } from "next/document";
 import { useContext } from "react";
 
 import { format, parseISO } from "date-fns";
@@ -35,6 +36,9 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 
   return (
     <Container>
+      <Head>
+        <title>Styledcastr | Home</title>
+      </Head>
 
       <LatestEpisodes>
         <h2>Últimos lançamentos</h2>
@@ -106,7 +110,10 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                   <td width={100}>{episode.publishedAt}</td>
                   <td>{episode.durationAsString}</td>
                   <td>
-                    <button type="button" onClick={() => playList(episodesList, index + latestEpisodes.length)}>
+                    <button
+                      type="button"
+                      onClick={() => playList(episodesList, index + latestEpisodes.length)}
+                    >
                       <img src="/play-green.svg" alt="Tocar episódio" />
                     </button>
                   </td>
