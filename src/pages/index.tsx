@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Html, Head } from "next/document";
+import Head from "next/head";
 import { useContext } from "react";
 
 import { format, parseISO } from "date-fns";
